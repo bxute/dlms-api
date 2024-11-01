@@ -2,8 +2,8 @@ package org.dlms.services;
 
 import io.grpc.stub.StreamObserver;
 
-import static org.dlms.utils.Logger.logError;
-import static org.dlms.utils.Logger.logInfo;
+import static org.dlms.utils.DlmsLogger.logError;
+import static org.dlms.utils.DlmsLogger.logInfo;
 
 public class ImpressionEventObserver implements StreamObserver<ImpressionEvent> {
     final StreamObserver<TrackEventResponse> responseStreamObserver;
@@ -14,7 +14,7 @@ public class ImpressionEventObserver implements StreamObserver<ImpressionEvent> 
 
     @Override
     public void onNext(ImpressionEvent impressionEvent) {
-        logInfo("Received impression event: " + impressionEvent);
+        logInfo("Received impression for: " + impressionEvent.getItemType());
         responseStreamObserver.onNext(TrackEventResponse
                 .newBuilder()
                 .setMessage("Ok")

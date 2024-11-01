@@ -2,8 +2,8 @@ package org.dlms.services;
 
 import io.grpc.stub.StreamObserver;
 
-import static org.dlms.utils.Logger.logError;
-import static org.dlms.utils.Logger.logInfo;
+import static org.dlms.utils.DlmsLogger.logError;
+import static org.dlms.utils.DlmsLogger.logInfo;
 
 public class ActionObserver implements StreamObserver<ActionEvent> {
     final StreamObserver<TrackEventResponse> responseStreamObserver;
@@ -14,7 +14,7 @@ public class ActionObserver implements StreamObserver<ActionEvent> {
 
     @Override
     public void onNext(ActionEvent actionEvent) {
-        logInfo("Received action event: " + actionEvent);
+        logInfo("Received action event for type: " + actionEvent.getActionType());
         responseStreamObserver.onNext(TrackEventResponse
                 .newBuilder()
                 .setSuccess(true)

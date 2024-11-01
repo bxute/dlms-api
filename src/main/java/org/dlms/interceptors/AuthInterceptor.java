@@ -5,7 +5,7 @@ import io.grpc.ServerCall;
 import io.grpc.ServerCallHandler;
 import io.grpc.ServerInterceptor;
 
-import static org.dlms.utils.Logger.logInfo;
+import static org.dlms.utils.DlmsLogger.logInfo;
 
 public class AuthInterceptor implements ServerInterceptor {
     @Override
