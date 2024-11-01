@@ -30,7 +30,7 @@ dependencies {
     implementation("javax.annotation:javax.annotation-api:1.3.2")
 
     // schemas
-    implementation("org.dlms.protos:dlms-schemas:1.0.14")
+    implementation("org.dlms.protos:dlms-schemas:1.0.22")
 
     // tests
     testImplementation(platform("org.junit:junit-bom:5.10.0"))

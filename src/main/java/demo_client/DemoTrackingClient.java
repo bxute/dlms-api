@@ -16,8 +16,8 @@ public class DemoTrackingClient {
 
         // create sub
         EventTrackingServiceGrpc.EventTrackingServiceStub stub = EventTrackingServiceGrpc.newStub(channel);
-        StreamObserver<ActionEvent> actionStreamObserver = stub.trackAction(new TrackEventObserver());
-        StreamObserver<ImpressionEvent> impressionEventStreamObserver = stub.trackImpression(new TrackEventObserver());
+        StreamObserver<ActionEvent> actionStreamObserver = stub.streamAction(new TrackEventObserver());
+        StreamObserver<ImpressionEvent> impressionEventStreamObserver = stub.streamImpression(new TrackEventObserver());
 
         //mock 10 events send
         for (int i = 0; i < 10; i++) {

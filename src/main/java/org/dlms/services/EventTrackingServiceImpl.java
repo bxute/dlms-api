@@ -4,12 +4,12 @@ import io.grpc.stub.StreamObserver;
 
 public class EventTrackingServiceImpl extends EventTrackingServiceGrpc.EventTrackingServiceImplBase {
     @Override
-    public StreamObserver<ActionEvent> trackAction(StreamObserver<TrackEventResponse> responseObserver) {
+    public StreamObserver<ActionEvent> streamAction(StreamObserver<TrackEventResponse> responseObserver) {
         return new ActionObserver(responseObserver);
     }
 
     @Override
-    public StreamObserver<ImpressionEvent> trackImpression(StreamObserver<TrackEventResponse> responseObserver) {
+    public StreamObserver<ImpressionEvent> streamImpression(StreamObserver<TrackEventResponse> responseObserver) {
         return new ImpressionEventObserver(responseObserver);
     }
 }
