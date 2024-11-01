@@ -4,6 +4,8 @@ import io.grpc.stub.StreamObserver;
 import org.dlms.services.ScoreRequest;
 import org.dlms.services.ScoreResponse;
 
+import static org.dlms.utils.DlmsLogger.logInfo;
+
 public class LiveScoreRequestObserver {
 
     private final StreamObserver<ScoreResponse> responseObserver;
@@ -16,6 +18,7 @@ public class LiveScoreRequestObserver {
         try {
             // repeat 100 times
             for (int i = 0; i < 100; i++) {
+                logInfo("Sending score: " + i);
                 responseObserver.onNext(
                         ScoreResponse.newBuilder()
                                 .setScoreDetail("Score " + i)
@@ -26,8 +29,9 @@ public class LiveScoreRequestObserver {
                 );
                 Thread.sleep(200);
             }
+            responseObserver.onCompleted();
         } catch (Exception e) {
-            e.printStackTrace();
+            logInfo("LiveScoreRequestObserver: " + e);
             responseObserver.onError(e);
         }
     }

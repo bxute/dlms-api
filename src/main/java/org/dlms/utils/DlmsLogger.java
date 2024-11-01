@@ -16,7 +16,7 @@ public class DlmsLogger {
     }
 
     public static void logError(String msg)  {
-        java.util.logging.Logger.getLogger(LOGGER_NAME).log(Level.SEVERE, msg);
+        logger.log(Level.SEVERE, msg);
     }
 
     public static void logInterceptor(String interceptor, Metadata metadata, ServerCall serverCall) {
@@ -25,7 +25,6 @@ public class DlmsLogger {
         MethodDescriptor.MethodType methodType = serverCall.getMethodDescriptor().getType();
         logInfo(String.format("""
                 ======
-                \n
                 Interceptor: %s
                 metadata: %s,
                 method: %s,
