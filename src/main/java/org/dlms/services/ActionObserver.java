@@ -1,5 +1,6 @@
 package org.dlms.services;
 
+import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 
 import static org.dlms.utils.DlmsLogger.logError;
@@ -14,12 +15,19 @@ public class ActionObserver implements StreamObserver<ActionEvent> {
 
     @Override
     public void onNext(ActionEvent actionEvent) {
-        logInfo("Received action event for type: " + actionEvent.getActionType());
+        logInfo("Received Action: " + actionEvent.getActionType());
+        logInfo("Returning Success " + Status.OK);
         responseStreamObserver.onNext(TrackEventResponse
                 .newBuilder()
                 .setSuccess(true)
-                .setMessage("Success")
+                .setMessage("Success " + actionEvent.getEventId())
                 .build());
+        try {
+            //simulate delay
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
