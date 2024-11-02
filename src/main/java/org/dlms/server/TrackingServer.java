@@ -5,6 +5,7 @@ import io.grpc.ServerBuilder;
 import org.dlms.interceptors.AuthInterceptor;
 import org.dlms.interceptors.HeaderInterceptor;
 import org.dlms.services.EventTrackingServiceImpl;
+import org.dlms.services.health.HealthService;
 import org.dlms.services.livescores.LiveScoreServiceImpl;
 import org.dlms.services.userservice.UserServiceImpl;
 
@@ -17,6 +18,7 @@ public class TrackingServer {
                 .addService(new EventTrackingServiceImpl())
                 .addService(new LiveScoreServiceImpl())
                 .addService(new UserServiceImpl())
+                .addService(new HealthService())
                 .intercept(new AuthInterceptor())
                 .intercept(new HeaderInterceptor())
                 .executor(Executors.newFixedThreadPool(5))
