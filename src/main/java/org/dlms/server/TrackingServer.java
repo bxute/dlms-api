@@ -6,6 +6,7 @@ import org.dlms.interceptors.AuthInterceptor;
 import org.dlms.interceptors.HeaderInterceptor;
 import org.dlms.services.EventTrackingServiceImpl;
 import org.dlms.services.livescores.LiveScoreServiceImpl;
+import org.dlms.services.userservice.UserServiceImpl;
 
 import java.util.concurrent.Executors;
 
@@ -15,8 +16,9 @@ public class TrackingServer {
         Server server = ServerBuilder.forPort(PORT)
                 .addService(new EventTrackingServiceImpl())
                 .addService(new LiveScoreServiceImpl())
-                .intercept(new HeaderInterceptor())
+                .addService(new UserServiceImpl())
                 .intercept(new AuthInterceptor())
+                .intercept(new HeaderInterceptor())
                 .executor(Executors.newFixedThreadPool(5))
                 .build();
 
