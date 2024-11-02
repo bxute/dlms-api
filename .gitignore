@@ -43,3 +43,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/src/main/resources/ca.crt
+/src/main/resources/server.crt
+/src/main/resources/server.key
