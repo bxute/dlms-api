@@ -3,10 +3,10 @@ package demo_client;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
-import org.dlms.server.TrackingServer;
+import org.dlms.server.GrpcServer;
 import org.dlms.services.*;
 
-import static org.dlms.server.TrackingServer.PORT;
+import static org.dlms.server.GrpcServer.PORT;
 
 public class DemoTrackingClient {
     public static void main(String[] args) throws Exception {
@@ -54,7 +54,7 @@ public class DemoTrackingClient {
         new Thread(() -> {
             String[] arg = new String[0];
             try {
-                TrackingServer.main(arg);
+                GrpcServer.main(arg);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
